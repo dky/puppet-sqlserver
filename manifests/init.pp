@@ -323,7 +323,7 @@ class sqlserver(
             }
           }
         }
-        'standard':
+        'enterprise':
         {
           # See: http://msdn.microsoft.com/en-us/library/ms144259.aspx#Install
           validate_string($source)
