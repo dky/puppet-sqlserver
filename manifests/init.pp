@@ -349,11 +349,13 @@ class sqlserver(
             }
             /^\\\\.*/:
             {
-              $credentials  = pscredential(hiera('sqlserver::source::user'), hiera('sqlserver::source::password'))
-              $creds_option = "-Credential ${credentials}"
-              $mount_share  = "New-PSDrive -Name Z \"${source}\" -PSProvider FileSystem ${creds_option}"
-              $mount_iso    = "Mount-DiskImage -ImagePath \"${source}\""
-              $install      = "${mount_share} ; ${mount_iso} ; Z:\\Setup.exe"
+              #$credentials  = pscredential(hiera('sqlserver::source::user'), hiera('sqlserver::source::password'))
+              #$creds_option = "-Credential ${credentials}"
+              #$mount_share  = "New-PSDrive -Name Z \"${source}\" -PSProvider FileSystem ${creds_option}"
+              #$mount_iso    = "Mount-DiskImage -ImagePath \"${source}\""
+              #$install      = "${mount_share} ; ${mount_iso} ; Z:\\Setup.exe"
+              #Let's not get heira involved and just have the user mount the CD-ROM
+              $install      = "E:\\Setup.exe"
             }
             default: { fail("Unsupported source \"${source}\"") }
           }
